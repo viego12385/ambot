@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dapat mo yes</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f3;
+            font-family: sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 2rem;
+        }
+        .gif-container {
+            height: 200px;
+            margin-bottom: 20px;
+        }
+        .gif-container img {
+            height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .btn-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        button {
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-weight: bold;
+        }
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        #noBtn {
+            background-color: #808080;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        #statusText {
+            margin-top: 20px;
+            color: #ff4d6d;
+            font-weight: bold;
+            min-height: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mainContainer" class="container">
+        <div class="gif-container">
+            <img id="mainGif" src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyZDQ4bnlnMmFqMDdka2kwYmJ0ejN5eWlwMGR6eWlyb3Ryd2M5MHAxNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/t8xgPfC5oNIRMrNooe/giphy.gif" alt="Cute character">
+        </div>
+        <h1 id="question">lang² Will you be my Valentine?</h1>
+        <div class="btn-group">
+            <button id="yesBtn" onclick="accept()">Yes</button>
+            <button id="noBtn" onclick="reject()">No</button>
+        </div>
+        <p id="statusText"></p>
+    </div>
+
+    <script>
+        let yesSize = 18;
+        let paddingX = 20;
+        let paddingY = 10;
+        let i = 0;
+        
+        const texts = [
+            "sure ka?",
+            "hunahunaa sa balik",
+            "waka ma sayup?",
+            "wan a na sad nako lang² :(",
+            "sakit mo naman :("
+        ];
+
+        const gifs = [
+            "https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUybHl1cm42OG9scWpjNm9yaTl4dnU3aG90NjIyaHFlcTVxdmx6Z21qeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ruyS8Zw9sBqE5UjOnY/giphy.gif",
+            "https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUycWozZDMxdmM1ajk2aGh6bG03eDh2M29jaGpjcGRlZGIxMGt1d3UxMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CsHcPqJ46RnKXDxwpa/giphy.gif",
+            "https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyeG90d3NwY25lNGFtMGxheXp4ODQwMmtiY28xbXZpY3c5OTFscTk2NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fdiOoSR8omN5RO36Yo/giphy.gif"
+        ];
+
+        function reject() {
+            yesSize += 35;
+            paddingX += 15;
+            paddingY += 10;
+            
+            const yes = document.getElementById('yesBtn');
+            const no = document.getElementById('noBtn');
+            const status = document.getElementById('statusText');
+            const mainImg = document.getElementById('mainGif');
+
+            yes.style.fontSize = yesSize + "px";
+            yes.style.padding = paddingY + "px " + paddingX + "px";
+            
+            mainImg.src = gifs[i % gifs.length];
+
+            no.style.display = "none";
+            setTimeout(() => {
+                no.style.display = "inline-block";
+            }, 100);
+
+            status.innerText = texts[i % texts.length];
+            i++;
+        }
+
+        function accept() {
+            document.getElementById('mainContainer').innerHTML = `
+                <div class="gif-container">
+                    <img src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyYWFxYzNua2tpcXc0ZXI0Y2licHJoMm1pc3NhMWxuZ2tudnNwN2dscyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BK1EfIsdkKZMY/giphy.gif" alt="Dancing cat">
+                </div>
+                <h1 style="font-size: 3rem;">yeyyy, bantay bitaw!</h1>
+                <h1 style="font-size: 3rem;">I love you <3</h1>
+            `;
+            document.body.style.backgroundColor = "#ffb3c1";
+        }
+    </script>
+</body>
+</html>
